@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdhenren.fetch.dao.xml.SysTaskMapper" >
+
+	<!--获取任务表信息-->
+	<select id="sysTasks" resultType="com.cdhenren.fetch.entity.SysTask">
+		SELECT
+			KEY_ID as keyId,
+			TASK_CODE taskCode,
+			`STATE` state,
+			CRT_DATE crtDate,
+			BEGIN_TIME beginTime,
+			END_TIME endTime,
+			DETAIL detail,
+			RE_TRY reTry,
+			RE_TRY_MAX reTryMax,
+			PWD pwd,
+			`USER` user,
+			FIX_TYPE fixType,
+			FIRST_REGION firstRegion,
+			SEC_REGION secRegion,
+			TMP_TABLE tmpTable
+		FROM
+			sys_task
+	  Where STATE = 0
+	</select>
+	
+	<select id="queryTableColumnInfo" parameterType="map" resultType="com.cdhenren.fetch.entity.enhancer.TableColumnInfo">
+		SELECT
+			column_name columnName,
+			 data_type dataType
+		FROM
+			information_schema.columns
+		WHERE
+			table_schema = (SELECT DATABASE())
+		  AND table_name = #{tableName}
+	</select>
+
+	<!--查询表名-->
+	<select id="queryTableInfo" resultType="string">
+		SELECT
+			table_name tableName
+		FROM
+			information_schema.TABLES
+		WHERE
+			TABLE_SCHEMA = (SELECT DATABASE())
+	</select>
+
+	<select id="querySysTableRelationship" parameterType="string" resultType="com.cdhenren.fetch.entity.enhancer.SysTableRelationship">
+		SELECT
+			key_id keyId,
+			`table_name` tableName,
+			`column`,
+			excel_column excelColumn,
+			`data_type` dataType
+		FROM
+			sys_table_relationship
+		WHERE
+			`table_name` = #{tableName}
+
+	</select>
+
+  <!--查询任务参数-->
+   <select id="taskPamas" resultType="com.cdhenren.fetch.entity.SysTaskPama">
+      select KEY_ID keyId,
+			 TASK_NAME taskName,
+			 TASK_CODE taskCode,
+			 FIX_TYPE fixType,
+			 FIX_TIME fixTime,
+			 `USER` user,
+			 PWD pwd,
+			 URL url,
+			 REQUEST_PAMA requestPama,
+			 TMP_TABLE tmpTable,
+			 INS_SQL insSql,
+			 STATE state,
+			 CRT_DATE crtDate,
+			 MOD_DATE modeDate,
+			 RE_TRY_MAX reTryMax,
+			 FIRST_REGION firstRegion,
+			 SEC_REGION secRegion
+         from
+            sys_task_pama
+    </select>
+
+	<!--插入任务实例表-->
+	<insert id="insertSysTask" parameterType="com.cdhenren.fetch.entity.SysTask"
+			keyProperty="keyId" useGeneratedKeys="true">
+		insert into sys_task(
+				KEY_ID,
+				TASK_CODE,
+				STATE,
+				CRT_DATE,
+				BEGIN_TIME,
+				END_TIME,
+				DETAIL,
+				RE_TRY,
+				RE_TRY_MAX,
+				`USER`,
+				PWD,
+				FIX_TYPE,
+				TMP_TABLE,
+				FIRST_REGION,
+				SEC_REGION
+				)values(
+				#{keyId},
+				#{taskCode},
+				#{state},
+				#{crtDate},
+				#{beginTime},
+				#{endTime},
+				#{detail},
+				#{reTry},
+				#{reTryMax},
+				#{user},
+				#{pwd},
+				#{fixType},
+				#{tmpTable},
+				#{firstRegion},
+				#{secRegion}
+				)
+	</insert>
+
+	<!--删除记录-->
+	<delete id="deleteSysTask" parameterType="com.cdhenren.fetch.entity.SysTask">
+		DELETE FROM sys_task where key_id = #{keyId}
+	</delete>
+
+	<!--插入历史记录-->
+	<insert id="insertSysTaskHis" parameterType="com.cdhenren.fetch.entity.SysTaskHis">
+		insert into sys_task_his(
+				TASK_CODE,
+				STATE,
+				CRT_DATE,
+				BEGIN_TIME,
+				END_TIME,
+				DETAIL,
+				TOTAL
+				)values(
+				#{taskCode},
+				#{state},
+				#{crtDate},
+				#{beginTime},
+				#{endTime},
+				#{detail},
+				#{total}
+				)
+	</insert>
+
+	<!--更新任务实例-->
+	<update id="updateTask" parameterType="com.cdhenren.fetch.entity.SysTask">
+		update sys_task
+		<set>
+			<if test="taskCode != null">
+				TASK_CODE = #{taskCode},
+			</if>
+			<if test="state != null">
+				STATE = #{state},
+			</if>
+			<if test="crtDate != null">
+				CRT_DATE = #{crtDate},
+			</if>
+			<if test="beginTime != null">
+				BEGIN_TIME = #{beginTime},
+			</if>
+			<if test="endTime != null">
+				END_TIME = #{endTime},
+			</if>
+			<if test="detail != null">
+				DETAIL = #{detail},
+			</if>
+			<if test="reTry != null">
+				RE_TRY = #{reTry},
+			</if>
+			<if test="reTryMax != null">
+				RE_TRY_MAX = #{reTryMax},
+			</if>
+		</set>
+		where key_id = #{keyId}
+	</update>
+
+</mapper>
