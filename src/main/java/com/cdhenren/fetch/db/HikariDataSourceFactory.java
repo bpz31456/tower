@@ -16,15 +16,20 @@ import java.util.Properties;
  */
 @Slf4j
 public class HikariDataSourceFactory extends PooledDataSourceFactory {
+    private Properties props;
     @Override
     public void setProperties(Properties properties) {
-        super.setProperties(properties);
+        props = properties;
         log.info("HikariCP数据库连接池参数配置");
+        properties.forEach((o, o2) -> log.debug("参数设置:{}={}",o,o2));
     }
 
     @Override
     public DataSource getDataSource() {
         HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl(this.props.getProperty("url"));
+        dataSource.setUsername(this.props.getProperty("username"));
+        dataSource.setPassword(this.props.getProperty("password"));
         return dataSource;
     }
 }

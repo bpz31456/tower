@@ -21,6 +21,7 @@ public class DruidDataSourceFactory extends PooledDataSourceFactory {
     public void setProperties(Properties properties) {
         this.props = properties;
         logger.debug("DruidDataSourceFactory进入参数设置");
+        properties.forEach((o, o2) -> logger.debug("参数设置:{}={}",o,o2));
     }
 
     @Override

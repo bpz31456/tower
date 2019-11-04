@@ -80,7 +80,6 @@ public class SqlSessionFactoryManager {
             StringBuilder stringBuilder = getStringBuilder(source, configs);
             if (stringBuilder.length() != 0) {
                 String configInfo = stringBuilder.toString();
-                logger.debug("配置参数{}", configInfo);
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(new ByteArrayInputStream(configInfo.getBytes()));
                 logger.debug("是否爲空sqlSessionFactory{}", sqlSessionFactory);
             }

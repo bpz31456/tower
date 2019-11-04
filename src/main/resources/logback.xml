@@ -36,6 +36,7 @@
     <logger name="quartz" level="DEBUG"/>
     <!--打印sql-->
     <logger name="com.cdhenren.fetch.dao" level="DEBUG"/>
+    <logger name="com.cdhenren.fetch.db" level="DEBUG"/>
     <logger name="com.cdhenren.fetch.task" level="DEBUG"/>
     <logger name="com.cdhenren.fetch.driver.enhancer" level="DEBUG"/>
 

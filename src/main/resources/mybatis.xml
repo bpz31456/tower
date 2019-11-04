@@ -5,10 +5,21 @@
 <configuration>
     <properties resource="tower.properties"/>
 
-    <environments default="development">
+    <environments default="project">
+        <!--ali数据库管理-->
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="com.cdhenren.fetch.db.DruidDataSourceFactory">
+                <property name="driver" value="${jdbc.driverClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="project">
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.cdhenren.fetch.db.HikariDataSourceFactory">
                 <property name="driver" value="${jdbc.driverClassName}"/>
                 <property name="url" value="${jdbc.url}"/>
                 <property name="username" value="${jdbc.username}"/>

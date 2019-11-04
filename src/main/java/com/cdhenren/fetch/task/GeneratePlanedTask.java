@@ -75,7 +75,6 @@ public class GeneratePlanedTask implements Runnable {
      */
     private boolean dayPlaned(String fixTime) {
         if (StringUtils.isEmpty(fixTime)) {
-            logger.warn("计划时间为空。");
             return false;
         }
         Calendar calendar = Calendar.getInstance();
