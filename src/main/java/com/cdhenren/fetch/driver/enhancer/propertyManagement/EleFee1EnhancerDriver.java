@@ -5,6 +5,7 @@ import com.cdhenren.fetch.driver.enhancer.AbstractDriverEnhancerTemplate;
 import com.cdhenren.fetch.entity.ResultSet;
 import com.cdhenren.fetch.entity.TaskWrap;
 import com.cdhenren.fetch.entity.TmpEleFee1;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,8 +28,8 @@ public class EleFee1EnhancerDriver extends AbstractDriverEnhancerTemplate {
     @Override
     protected void saveData() throws Exception {
         logger.debug("完成");
-        MyBatisUtil.setLocation(taskWrap.getSysTask().getLocation());
-        completed(resultSets);
+       // MyBatisUtil.setLocation(taskWrap.getSysTask().getLocation());
+        //completed(resultSets);
     }
 
     @Override
@@ -54,17 +55,17 @@ public class EleFee1EnhancerDriver extends AbstractDriverEnhancerTemplate {
         //url=/default/baseinfo/property/QueryPropertyInfo.jsp?_t=667802&_winid=w6904
         List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
         chromeWait(driver, 5);
-        for (int i = 0; i < iframes.size(); i++) {
-            logger.debug("src:{}{}", i, iframes.get(i).getAttribute("src"));
-        }
         String src = iframes.get(2).getAttribute("src");
         logger.debug("size={},跳转页面：{}", iframes.size(), src);
         driver.get(src);
         TimeUnit.SECONDS.sleep(3);
         //条件筛选
         driver.findElement(By.cssSelector("#cityOrgcode > span > span > span.mini-buttonedit-button")).click();
-        List<WebElement> items = driver.findElements(By.cssSelector("#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table > tr"));
+        //#mini-6\24 2
+        //#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table
+        List<WebElement> items = driver.findElements(By.cssSelector("#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table > tbody > tr"));
         int itemLen = items.size();
+        logger.info("下拉框数量：{}",itemLen);
         //各个点击下载
         for (int i = 0; i < itemLen; i++) {
             WebElement item = items.get(i);

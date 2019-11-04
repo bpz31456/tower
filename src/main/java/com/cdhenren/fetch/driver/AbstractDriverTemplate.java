@@ -147,6 +147,7 @@ public abstract class AbstractDriverTemplate implements Runnable {
         options.addArguments("--start-maximized");
         //关闭gpu图片渲染
         options.addArguments("--disable-gpu");
+//        options.addArguments("user-data-dir=C:/test");
         //无界面浏览器，貌似不起作用
 //        options.setHeadless(true);
         //user-agent 设置 profile.general_useragent_override

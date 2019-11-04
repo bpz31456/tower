@@ -1,10 +1,7 @@
 package com.cdhenren.fetch.task;
 
 import com.cdhenren.fetch.driver.assetsManagement.*;
-import com.cdhenren.fetch.driver.property.BasicInformationDownloadDriver;
-import com.cdhenren.fetch.driver.property.CardDownloadDriver;
-import com.cdhenren.fetch.driver.property.ContractRDownloadDriver;
-import com.cdhenren.fetch.driver.property.EleMeterDownloadDriver;
+import com.cdhenren.fetch.driver.property.*;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Map;
@@ -42,6 +39,8 @@ public final class TaskTypeComparison {
             .put(CardDownloadDriver.class,"com.cdhenren.fetch.driver.enhancer.propertyManagement.CardEnhancerDriver")
             //物业-合同信息
             .put(ContractRDownloadDriver.class,"com.cdhenren.fetch.driver.enhancer.propertyManagement.ContractREnhancerDriver")
+            //物业-电费台账采集1
+            .put(EleFee1DownloadDriver.class,"com.cdhenren.fetch.driver.enhancer.propertyManagement.EleFee1EnhancerDriver")
             //.put(PlaneDriver.class, "com.cdhenren.fetch.driver.enhancer.assetsManagement.EnhancerPlaneDriver")
             .build();
 
