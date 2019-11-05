@@ -115,7 +115,6 @@ public class GeneratePlanedTask implements Runnable {
         return calendar.getTimeInMillis();
     }
 
-
     private SysTask getSysTask(SysTaskPama e) {
         SysTask sysTask = new SysTask();
         sysTask.setState(SysTask.STATE_0);

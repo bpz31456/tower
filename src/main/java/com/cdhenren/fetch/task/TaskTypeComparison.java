@@ -41,6 +41,8 @@ public final class TaskTypeComparison {
             .put(ContractRDownloadDriver.class,"com.cdhenren.fetch.driver.enhancer.propertyManagement.ContractREnhancerDriver")
             //物业-电费台账采集1
             .put(EleFee1DownloadDriver.class,"com.cdhenren.fetch.driver.enhancer.propertyManagement.EleFee1EnhancerDriver")
+            //物业-电费台账采集1
+            .put(EleFee3DownloadDriver.class,"com.cdhenren.fetch.driver.enhancer.propertyManagement.EleFee3EnhancerDriver")
             //.put(PlaneDriver.class, "com.cdhenren.fetch.driver.enhancer.assetsManagement.EnhancerPlaneDriver")
             .build();
 

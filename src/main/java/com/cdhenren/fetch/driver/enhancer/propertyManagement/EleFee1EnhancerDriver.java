@@ -83,6 +83,5 @@ public class EleFee1EnhancerDriver extends AbstractDriverEnhancerTemplate {
         }
         TimeUnit.SECONDS.sleep(5);
         dealDownLoadFile(resultSets, 2, TmpEleFee1.class, "电费有票支付台账");
-        //TODO 测试
     }
 }
