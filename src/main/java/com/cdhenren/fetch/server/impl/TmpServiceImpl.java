@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * version1.1.5
@@ -20,7 +21,6 @@ import java.util.Map;
  * @date 2018/04/26
  */
 public class TmpServiceImpl implements TmpService {
-
     private Logger logger = LoggerFactory.getLogger(TmpServiceImpl.class);
     private TmpMapper tmpMapper = null;
     private final ExecutorType executeModelBatch = ExecutorType.BATCH;
@@ -188,29 +188,18 @@ public class TmpServiceImpl implements TmpService {
         return tmpEleFee3s.size();
     }
 
-
-    @Override
-    public int insertTmpEleFee2s(List<TmpEleFee2> tmpEleFee2s) throws Exception {
-        SqlSession sqlSession = MyBatisUtil.getSession(executeModelBatch);
-        try {
-            tmpMapper = sqlSession.getMapper(TmpMapper.class);
-            tmpEleFee2s.forEach(tmpEleFee2 -> {
-                tmpMapper.insertTmpEleFee2(tmpEleFee2);
-            });
-            sqlSession.commit();
-        } finally {
-            MyBatisUtil.closeSession(sqlSession);
-        }
-        return tmpEleFee2s.size();
-    }
-
     @Override
     public int insertTmpEleFee1s(List<TmpEleFee1> tmpEleFee1s) throws Exception {
         SqlSession sqlSession = MyBatisUtil.getSession(executeModelBatch);
         try {
             tmpMapper = sqlSession.getMapper(TmpMapper.class);
-            tmpEleFee1s.forEach(tmpEleFee1 -> {
-                tmpMapper.insertTmpEleFee1(tmpEleFee1);
+            Map<String, List<TmpEleFee1>> collect = tmpEleFee1s.stream().collect(Collectors.groupingBy(TmpEleFee1::get供电方式));
+            collect.forEach((s, ele1s) -> {
+                if("转供电".equals(s)){
+                    ele1s.forEach(tmpEleFee1 -> tmpMapper.insertTmpEleFee2(tmpEleFee1));
+                }else{
+                    ele1s.forEach(tmpEleFee1 -> tmpMapper.insertTmpEleFee1(tmpEleFee1));
+                }
             });
             sqlSession.commit();
         } finally {

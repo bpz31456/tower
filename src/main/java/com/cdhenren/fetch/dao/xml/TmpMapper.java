@@ -123,10 +123,10 @@ public interface TmpMapper {
 
     /**
      * insertTmpEleFee2
-     * @param tmpEleFee2
+     * @param tmpEleFee1
      * @return
      */
-    int insertTmpEleFee2(TmpEleFee2 tmpEleFee2);
+    int insertTmpEleFee2(TmpEleFee1 tmpEleFee1);
 
     /**
      * insertTmpEleFee3

@@ -39,7 +39,12 @@ public class SysTaskServiceImpl implements SysTaskService {
             for (FunctionName2Table functionName2Table : FunctionName2Table.values()) {
                 if (functionName2Table.getFunctionName().equals(method.getName())) {
                     //insert tmp表的时候清空表数据
-                    new TmpServiceImpl().truncateTable(functionName2Table.getTableName());
+                    if("tmp_电费支付台账_直供".equals(functionName2Table.getTableName())){
+                        new TmpServiceImpl().truncateTable("tmp_电费支付台账_直供");
+                        new TmpServiceImpl().truncateTable("tmp_电费支付台账_转供");
+                    }else{
+                        new TmpServiceImpl().truncateTable(functionName2Table.getTableName());
+                    }
                     break;
                 }
             }
@@ -178,9 +183,6 @@ public class SysTaskServiceImpl implements SysTaskService {
                 if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpEleFee1) {
                     total = tmpService.insertTmpEleFee1s((List<TmpEleFee1>) r);
                 }
-                if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpEleFee2) {
-                    total = tmpService.insertTmpEleFee2s((List<TmpEleFee2>) r);
-                }
                 if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpEleFee3) {
                     total = tmpService.insertTmpEleFee3s((List<TmpEleFee3>) r);
                 }
@@ -240,9 +242,6 @@ public class SysTaskServiceImpl implements SysTaskService {
                         }
                         if (clazz.equals(TmpEleFee1.class)) {
                             total += tmpService.insertTmpEleFee1s((List<TmpEleFee1>) ((Map) r).get(clazz));
-                        }
-                        if (clazz.equals(TmpEleFee2.class)) {
-                            total += tmpService.insertTmpEleFee2s((List<TmpEleFee2>) ((Map) r).get(clazz));
                         }
                         if (clazz.equals(TmpEleFee3.class)) {
                             total += tmpService.insertTmpEleFee3s((List<TmpEleFee3>) ((Map) r).get(clazz));

@@ -28,8 +28,8 @@ public class EleFee1EnhancerDriver extends AbstractDriverEnhancerTemplate {
     @Override
     protected void saveData() throws Exception {
         logger.debug("完成");
-       // MyBatisUtil.setLocation(taskWrap.getSysTask().getLocation());
-        //completed(resultSets);
+        MyBatisUtil.setLocation(taskWrap.getSysTask().getLocation());
+        completed(resultSets);
     }
 
     @Override
@@ -43,7 +43,6 @@ public class EleFee1EnhancerDriver extends AbstractDriverEnhancerTemplate {
         logger.info("size={}", menus.size());
         for (WebElement menu : menus) {
             String text = menu.getText();
-            logger.info("{}", text);
             if (menu.getText().contains("电费支付台账")) {
                 menu.click();
                 break;
@@ -61,26 +60,26 @@ public class EleFee1EnhancerDriver extends AbstractDriverEnhancerTemplate {
         TimeUnit.SECONDS.sleep(3);
         //条件筛选
         driver.findElement(By.cssSelector("#cityOrgcode > span > span > span.mini-buttonedit-button")).click();
+        TimeUnit.SECONDS.sleep(3);
         //#mini-6\24 2
         //#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table
         List<WebElement> items = driver.findElements(By.cssSelector("#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table > tbody > tr"));
         int itemLen = items.size();
         logger.info("下拉框数量：{}",itemLen);
-        //各个点击下载
-        for (int i = 0; i < itemLen; i++) {
+        //各个点击下载,排除第一个空，第二个西藏自治区
+        for (int i = 2; i < itemLen; i++) {
             WebElement item = items.get(i);
-            String text = item.getText();
-            if (StringUtils.isEmpty(text) || text.contains("西藏自治区")) {
-                continue;
-            }
+            //item.findElement(By.cssSelector("td:nth-child(2)")).click();
             item.click();
+            TimeUnit.SECONDS.sleep(2);
             driver.findElement(By.cssSelector("#searchBtn")).click();
             chromeWait(driver, 5);
             TimeUnit.SECONDS.sleep(2);
             //导出
             driver.findElement(By.cssSelector("#expExcelBtn")).click();
             TimeUnit.SECONDS.sleep(5);
-            items = driver.findElements(By.cssSelector("#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table > tr"));
+            driver.findElement(By.cssSelector("#cityOrgcode > span > span > span.mini-buttonedit-button")).click();
+            items = driver.findElements(By.cssSelector("#mini-6 > div.mini-listbox-border > div.mini-listbox-view > div > table >tbody> tr"));
         }
         TimeUnit.SECONDS.sleep(5);
         dealDownLoadFile(resultSets, 2, TmpEleFee1.class, "电费有票支付台账");

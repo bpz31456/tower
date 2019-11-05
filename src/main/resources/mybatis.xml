@@ -17,6 +17,7 @@
             </dataSource>
         </environment>
 
+        <!--HikariCP-->
         <environment id="project">
             <transactionManager type="JDBC"/>
             <dataSource type="com.cdhenren.fetch.db.HikariDataSourceFactory">

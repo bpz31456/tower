@@ -95,14 +95,6 @@ public interface TmpService {
     int insertTmpEleFee3s(List<TmpEleFee3> r) throws Exception;
 
     /**
-     * insertTmpEleFee2s
-     *
-     * @param r
-     * @return
-     */
-    int insertTmpEleFee2s(List<TmpEleFee2> r) throws Exception;
-
-    /**
      * insertTmpEleFee1s
      *
      * @param r
