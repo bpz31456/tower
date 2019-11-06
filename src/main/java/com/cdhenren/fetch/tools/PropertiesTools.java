@@ -17,30 +17,7 @@ public final class PropertiesTools {
 
     private static String getProperty(String config, String key, String superAddition) {
         if (prop == null) {
-            synchronized (PropertiesTools.class) {
-                if (prop == null) {
-                    prop = new Properties();
-                    InputStream inputStream = null;
-                    inputStream = PropertiesTools.class.getClassLoader().getResourceAsStream(config);
-                    if (inputStream == null) {
-                        logger.warn("没有发现配置文件。{}", config);
-                        return null;
-                    }
-                    try {
-                        prop.load(inputStream);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        logger.error("读取文件未知错误.{}", e);
-                    } finally {
-                        try {
-                            inputStream.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            logger.error("关闭文件出错");
-                        }
-                    }
-                }
-            }
+            getProperties(config);
         }
         String s;
         synchronized (PropertiesTools.class) {
@@ -61,5 +38,38 @@ public final class PropertiesTools {
      */
     public static String getProperty(String config, String key) {
         return getProperty(config, key, null);
+    }
+
+    /**
+     * 得到配置信息
+     * @param config
+     * @return
+     */
+    public static Properties getProperties(String config){
+        synchronized (PropertiesTools.class) {
+            if (prop == null) {
+                prop = new Properties();
+                InputStream inputStream = null;
+                inputStream = PropertiesTools.class.getClassLoader().getResourceAsStream(config);
+                if (inputStream == null) {
+                    logger.warn("没有发现配置文件。{}", config);
+                    return null;
+                }
+                try {
+                    prop.load(inputStream);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    logger.error("读取文件未知错误.{}", e);
+                } finally {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.error("关闭文件出错");
+                    }
+                }
+            }
+        }
+        return prop;
     }
 }

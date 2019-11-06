@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
-    定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <!--<property name="LOG_HOME" value="C:\\Users\\Administrator\\Desktop\\DCM\\log" />-->
-    <property name="LOG_HOME" value="C:\\Users\\Fuhj\\Desktop\\tower" />
-    <!--<property name="LOG_HOME" value=" D:\\log\\tower" />-->
+    <!--<property name="LOG_HOME" value="C:\\Users\\Fuhj\\Desktop\\tower" />-->
+    <property name="LOG_HOME" value="E:\\env\\log" />
 
     <property name="APP_NAME" value="tower"/>
     <property name="VERSION" value="snapshoot"/>
@@ -42,7 +42,7 @@
 
     <!-- 日志输出级别 -->
     <!--<root level="INFO">-->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT" />
         <!--<appender-ref ref="FILE"/>-->
         <!--<appender-ref ref="com.cdhenren.fetch.dao"/>-->
