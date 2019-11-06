@@ -307,4 +307,11 @@ public interface TmpService {
      * @return
      */
     int insertTmpSiteRemovalRates(List<TmpSiteRemovalRate> r);
+
+    /**
+     * 历史警告Hbase
+     * @param r
+     * @return
+     */
+    int insertTmpHistoryWarnHbases(List<TmpHistoryWarnHbase> r);
 }

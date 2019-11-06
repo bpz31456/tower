@@ -573,4 +573,17 @@ public class TmpServiceImpl implements TmpService {
         return tmpSiteRemovalRates.size();
     }
 
+    @Override
+    public int insertTmpHistoryWarnHbases(List<TmpHistoryWarnHbase> tmpHistoryWarnHbases) {
+        SqlSession sqlSession = MyBatisUtil.getSession(executeModelBatch);
+        try {
+            tmpMapper = sqlSession.getMapper(TmpMapper.class);
+            tmpHistoryWarnHbases.forEach(tmpHistoryWarnHbase -> tmpMapper.insertTmpHistoryWarnHbase(tmpHistoryWarnHbase));
+            sqlSession.commit();
+        } finally {
+            MyBatisUtil.closeSession(sqlSession);
+        }
+        return tmpHistoryWarnHbases.size();
+    }
+
 }

@@ -15,6 +15,7 @@ public enum FunctionName2Table {
     TMP_AIR_COND("tmp_资源_空调", "insertTmpAirConds"),
     SITE_DEMOLITION_RATE("tmp_站址拆除率", "insertTmpSiteRemovalRates"),
 
+
     TMP_TRANSFER_ORDER("tmp_传输类订单确认表", "insertTmpTransferOrder"),
     TMP_CONTRACT("tmp_合同", "insertTmpContracts"),
     TMP_CARD("tmp_物业_场租卡片", "insertTmpCards"),
@@ -45,6 +46,11 @@ public enum FunctionName2Table {
     TMP_SITE_LOCKED("tmp_站址_已锁定", "insertTmpSizeLockeds"),
     TMP_SITE_UNLOCKED("tmp_站址_未锁定", "insertTmpSiteUnLockeds"),
     TMP_PHOTO("tmp_站址_照片", "insertTmpPhotos"),
+
+    /**
+     * 历史告警Hbase
+     */
+    HISTORY_WARN_HBASE("tmp_运维_告警_当月", "insertTmpHistoryWarnHbases"),
 
     TMP_TOWER_ORDER("tmp_铁塔类订单确认表", "insertTmpTowerOrder"),
     TMP_REPROJ("tmp_销项项目", "insertTmpReProjs"),

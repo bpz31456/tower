@@ -3,6 +3,7 @@ package com.cdhenren.fetch.task;
 import com.cdhenren.fetch.driver.*;
 import com.cdhenren.fetch.driver.assetsManagement.*;
 import com.cdhenren.fetch.driver.enhancer.assetsManagement.SiteDemolitionRateDriver;
+import com.cdhenren.fetch.driver.enhancer.operationsManagement.HistoryWarnHbaseDriver;
 import com.cdhenren.fetch.driver.property.*;
 
 /**
@@ -52,6 +53,10 @@ public enum  TaskType {
     DCM_ELE_FEE2(EleFee2DownloadDriver.class),
     /** 物业-电费台账采集3**/
     DCM_ELE_FEE3(EleFee3DownloadDriver.class),
+
+    /**运营管理-日数据-历史告警Hbase**/
+    HISTORY_WARN_HBASE(HistoryWarnHbaseDriver.class),
+
 
     /** 项目-项目**/
     DCM_PROJ(ProjDownloadDriver.class),

@@ -300,4 +300,10 @@ public interface TmpMapper {
      * @return
      */
     int insertTmpSiteRemovalRate(TmpSiteRemovalRate tmpSiteRemovalRate);
+
+    /**
+     * 历史警告Hbase
+     * @param tmpHistoryWarnHbase
+     */
+    void insertTmpHistoryWarnHbase(TmpHistoryWarnHbase tmpHistoryWarnHbase);
 }

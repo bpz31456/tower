@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 运维监控
+ *
  * @author Baopz
  * @date 2018/05/24
  */
@@ -35,31 +36,9 @@ public abstract class AbstractMonitoringDownloadDriver extends AbstractDriverTem
         //监控系统
         toMonitorMenu();
         TimeUnit.SECONDS.sleep(30);
-        chromeWait(driver,30);
-        //进入
-        driver.findElement(By.cssSelector("#app > div.navbar > div > ul.nav.nav-left > li > a")).click();
-        TimeUnit.SECONDS.sleep(5);
-        //
-        List<WebElement> menus = driver.findElements(By.cssSelector("div.popover-content > div.popover-sider > ul > li"));
-        for (WebElement menu : menus) {
-            logger.debug("菜单信息{}",menu.getText());
-            if(menu.getText().contains(menuLevel1)){
-                menu.click();
-                chromeWait(driver,10);
-                List<WebElement> subMenus =  driver.findElements(By.cssSelector("#app > div.popover.bottom.popover-home.animated.bounceInDown.active > div.popover-content > div.popover-content-inner > div > dl > dd > a"));
-                logger.debug("子菜长度{}",subMenus==null?0:subMenus.size());
-                for (WebElement subMenu : subMenus) {
-                    logger.debug("子菜名称{}",subMenu.getText());
-                    if(menuLevel2.equals(subMenu.getText())) {
-                        subMenu.click();
-                        chromeWait(driver, 10);
-                        break;
-                    }
-                }
-                break;
-            }
-        }
-
+        chromeWait(driver, 30);
+        //运维监控菜单
+        monitoring(menuLevel1, menuLevel2);
         //入库
         completed(searchData());
     }
@@ -82,7 +61,7 @@ public abstract class AbstractMonitoringDownloadDriver extends AbstractDriverTem
         List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
         chromeWait(driver, 10);
         for (int i = 0; i < iframes.size(); i++) {
-            logger.debug("src:{}{}",i,iframes.get(i).getAttribute("src"));
+            logger.debug("src:{}{}", i, iframes.get(i).getAttribute("src"));
         }
         String src = iframes.get(2).getAttribute("src");
         driver.get(src);
@@ -113,7 +92,7 @@ public abstract class AbstractMonitoringDownloadDriver extends AbstractDriverTem
         driver.findElement(By.cssSelector("#queryForm > center:nth-child(2) > table:nth-child(3) > tbody > tr:nth-child(6) > td:nth-child(6) > button")).click();
 
         mapMarge(tmpMap, parse());
-        logger.debug("结果集：{}",tmpMap);
+        logger.debug("结果集：{}", tmpMap);
         return tmpMap;
     }
 

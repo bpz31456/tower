@@ -518,4 +518,35 @@ public abstract class AbstractDriverTemplate implements Runnable {
     private static <T> List<T> convert(List<?> list) {
         return (List<T>) list;
     }
+
+    /**
+     * 运维监控菜单
+     * @param menuLevel1
+     * @param menuLevel2
+     * @throws Exception
+     */
+    protected void monitoring(String menuLevel1, String menuLevel2) throws Exception{
+        driver.findElement(By.cssSelector("#app > div.navbar > div > ul.nav.nav-left > li > a")).click();
+        TimeUnit.SECONDS.sleep(5);
+        //
+        List<WebElement> menus = driver.findElements(By.cssSelector("div.popover-content > div.popover-sider > ul > li"));
+        for (WebElement menu : menus) {
+            logger.debug("菜单信息{}",menu.getText());
+            if(menu.getText().contains(menuLevel1)){
+                menu.click();
+                chromeWait(driver,10);
+                List<WebElement> subMenus =  driver.findElements(By.cssSelector("#app > div.popover.bottom.popover-home.animated.bounceInDown.active > div.popover-content > div.popover-content-inner > div > dl > dd > a"));
+                logger.debug("子菜长度{}",subMenus==null?0:subMenus.size());
+                for (WebElement subMenu : subMenus) {
+                    logger.debug("子菜名称{}",subMenu.getText());
+                    if(menuLevel2.equals(subMenu.getText())) {
+                        subMenu.click();
+                        chromeWait(driver, 10);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
 }
