@@ -51,6 +51,9 @@ public enum FunctionName2Table {
      * 历史告警Hbase
      */
     HISTORY_WARN_HBASE("tmp_运维_告警_当月", "insertTmpHistoryWarnHbases"),
+    PULL_EXCEPTION("tmp_运维_取信异常设备清单", "insertTmpPullExceptions"),
+    WRONG_EQUIPMENT("tmp_运维_异常设备站址清单", "insertTmpWrongEquipments"),
+    PERFORMANCE_DATA("tmp_运维_性能数据", "insertTmpPerformances"),
 
     TMP_TOWER_ORDER("tmp_铁塔类订单确认表", "insertTmpTowerOrder"),
     TMP_REPROJ("tmp_销项项目", "insertTmpReProjs"),

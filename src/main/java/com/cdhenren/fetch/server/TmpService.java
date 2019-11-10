@@ -314,4 +314,25 @@ public interface TmpService {
      * @return
      */
     int insertTmpHistoryWarnHbases(List<TmpHistoryWarnHbase> r);
+
+    /**
+     * 获取异常
+     * @param r
+     * @return
+     */
+    int insertTmpPullExceptions(List<TmpPullException> r);
+
+    /**
+     * 异常设备
+     * @param r
+     * @return
+     */
+    int insertTmpWrongEquipments(List<TmpWrongEquipment> r);
+
+    /**
+     * 性能信息
+     * @param tmpPerformances
+     * @return
+     */
+    int insertTmpPerformances(List<TmpPerformance> tmpPerformances);
 }

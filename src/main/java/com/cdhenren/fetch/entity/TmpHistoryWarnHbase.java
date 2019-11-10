@@ -4,6 +4,7 @@ import lombok.Data;
 
 /**
  * 历史警戒Hbase
+ * @author Fuhj
  */
 @Data
 public class TmpHistoryWarnHbase implements ResultSet {

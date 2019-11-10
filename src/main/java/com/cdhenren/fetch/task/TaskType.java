@@ -4,6 +4,9 @@ import com.cdhenren.fetch.driver.*;
 import com.cdhenren.fetch.driver.assetsManagement.*;
 import com.cdhenren.fetch.driver.enhancer.assetsManagement.SiteDemolitionRateDriver;
 import com.cdhenren.fetch.driver.enhancer.operationsManagement.HistoryWarnHbaseDriver;
+import com.cdhenren.fetch.driver.enhancer.operationsManagement.PerformanceDriver;
+import com.cdhenren.fetch.driver.enhancer.operationsManagement.PullExceptionDriver;
+import com.cdhenren.fetch.driver.enhancer.operationsManagement.WrongEquipmentDriver;
 import com.cdhenren.fetch.driver.property.*;
 
 /**
@@ -56,6 +59,12 @@ public enum  TaskType {
 
     /**运营管理-日数据-历史告警Hbase**/
     HISTORY_WARN_HBASE(HistoryWarnHbaseDriver.class),
+    /**日数据-取信异常设备**/
+    PULL_EXCEPTION(PullExceptionDriver.class),
+    /**日数据-取信异常设备**/
+    WRONG_EQUIPMENT(WrongEquipmentDriver.class),
+    /**日数据-性能数据**/
+    PERFORMANCE_DATA(PerformanceDriver.class),
 
 
     /** 项目-项目**/

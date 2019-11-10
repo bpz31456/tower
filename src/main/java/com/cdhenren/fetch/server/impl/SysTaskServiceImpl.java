@@ -201,6 +201,15 @@ public class SysTaskServiceImpl implements SysTaskService {
                 if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpHistoryWarnHbase) {
                     total = tmpService.insertTmpHistoryWarnHbases((List<TmpHistoryWarnHbase>) r);
                 }
+                if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpPullException) {
+                    total = tmpService.insertTmpPullExceptions((List<TmpPullException>) r);
+                }
+                if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpWrongEquipment) {
+                    total = tmpService.insertTmpWrongEquipments((List<TmpWrongEquipment>) r);
+                }
+                if ((!((List) r).isEmpty()) && ((List) r).get(0) instanceof TmpPerformance) {
+                    total = tmpService.insertTmpPerformances((List<TmpPerformance>) r);
+                }
             } else if (r instanceof Map) {
                 if ((!((Map) r).isEmpty())) {
                     Set<Class> resultSets = ((Map) r).keySet();

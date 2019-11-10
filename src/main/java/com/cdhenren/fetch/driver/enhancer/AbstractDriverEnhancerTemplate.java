@@ -6,7 +6,10 @@ import com.cdhenren.fetch.dao.xml.SysTaskMapper;
 import com.cdhenren.fetch.dao.xml.TmpMapper;
 import com.cdhenren.fetch.db.MyBatisUtil;
 import com.cdhenren.fetch.driver.AbstractDriverTemplate;
-import com.cdhenren.fetch.entity.*;
+import com.cdhenren.fetch.entity.ResultSet;
+import com.cdhenren.fetch.entity.SysTask;
+import com.cdhenren.fetch.entity.SysTaskHis;
+import com.cdhenren.fetch.entity.TaskWrap;
 import com.cdhenren.fetch.entity.enhancer.TableColumnInfo;
 import com.cdhenren.fetch.group.Region;
 import com.cdhenren.fetch.group.Session;
@@ -377,18 +380,21 @@ public abstract class AbstractDriverEnhancerTemplate extends AbstractDriverTempl
 
     /**
      * 处理download的文件
+     *
      * @param resultSets
      * @param key
      * @return
      * @throws Exception
      */
-    protected List<ResultSet> dealDownLoadFile(List<ResultSet> resultSets,int skip,Class clazz, String key) throws Exception {
-        if (resultSets == null) {throw new Exception("需要实例化接受参数");}
+    protected List<ResultSet> dealDownLoadFile(List<ResultSet> resultSets, int skip, Class clazz, String key) throws Exception {
+        if (resultSets == null) {
+            throw new Exception("需要实例化接受参数");
+        }
         FileTools.list(downloadPath, key).forEach(s -> {
             try {
                 List<? extends ResultSet> rs = ExcelUtils.readFile(new File(s), new int[]{skip}, new Class[]{clazz}).get(clazz);
                 resultSets.addAll(rs);
-                logger.info("读取数据条数：{}", rs.size());
+                logger.info("{}文件，读取数据条数：{}", s, rs.size());
             } catch (Exception e) {
                 e.printStackTrace();
             }

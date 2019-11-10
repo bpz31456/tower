@@ -3667,6 +3667,122 @@ VALUES
 			)
 	</insert>
 
+	<!--获取异常-->
+	<insert id="insertTmpPullException" parameterType="com.cdhenren.fetch.entity.TmpPullException">
+					INSERT INTO `tmp_运维_取信异常设备清单`
+					(`站址名称`,
+					`站址运维ID`,
+					`设备名称`,
+					`设备运维ID`,
+					`省`,
+					`市`,
+					`区县`,
+					`FSU厂家`,
+					`缺失信号量`,
+					`最小上报次数`,
+					`缺失时间`,
+					`站址资源ID`,
+					`站址状态`,
+					`FSU名称`,
+					`FSU编码`,
+					`FSU注册状态`,
+					`FSU注册时间`,
+					`设备资源ID`,
+					`代维厂家`)
+					VALUES
+					(
+					#{站址名称},
+					#{站址运维ID},
+					#{设备名称},
+					#{设备运维ID},
+					#{省},
+					#{市},
+					#{区县},
+					#{FSU厂家},
+					#{缺失信号量},
+					#{最小上报次数},
+					#{缺失时间},
+					#{站址资源ID},
+					#{站址状态},
+					#{FSU名称},
+					#{FSU编码},
+					#{FSU注册状态},
+					#{FSU注册时间},
+					#{设备资源ID},
+					#{代维厂家}
+					)
+	</insert>
+
+	<!--异常设备-->
+	<insert id="insertTmpWrongEquipment" parameterType="com.cdhenren.fetch.entity.TmpWrongEquipment">
+		  INSERT INTO `tmp_运维_异常设备站址清单`
+					(`伪站址编码`,
+					`站址名称`,
+					`站址运维ID`,
+					`省`,
+					`市`,
+					`区县`,
+					`FSU厂家`,
+					`FSU运维ID`,
+					`设备类型`,
+					`异常类型`,
+					`数据异常内容`,
+					`数据稽核时间`,
+					`代维厂家`)
+					VALUES
+					(
+					#{设备运维ID},
+					#{站址名称},
+					#{站址运维ID},
+					#{省},
+					#{市},
+					#{区县},
+					#{FSU厂家},
+					#{FSU运维ID},
+					#{设备类型},
+					#{异常类型},
+					#{数据异常内容},
+					#{数据稽核时间},
+					#{代维厂家}
+					)
+	</insert>
+
+	<!---性能-->
+	<insert id="insertTmpPerformance" parameterType="com.cdhenren.fetch.entity.TmpPerformance">
+		INSERT INTO `tmp_运维_性能数据`
+					(`省`,
+					`市`,
+					`区县`,
+					`站址`,
+					`站址运维ID`,
+					`设备名称`,
+					`设备厂家`,
+					`设备型号`,
+					`设备ID`,
+					`监控点`,
+					`时间`,
+					`实测值`,
+					`单位`,
+					`状态`)
+					VALUES
+					(
+					#{省},
+					#{市},
+					#{区县},
+					#{站址},
+					#{站址运维ID},
+					#{设备名称},
+					#{设备厂家},
+					#{设备型号},
+					#{设备ID},
+					#{监控点},
+					#{时间},
+					#{实测值},
+					#{单位},
+					#{状态}
+					)
+	</insert>
+
 	<insert id="insertTmpHistoryWarnHbase" parameterType="com.cdhenren.fetch.entity.TmpHistoryWarnHbase">
 		INSERT INTO `tmp_运维_告警_当月`
 						(`ID`,
@@ -3758,7 +3874,6 @@ VALUES
 						#{站址编码},
 						#{告警开始时间FSU},
 						#{告警结束时间FSU},
-						#{告警历时},
 						#{是否手工清除}
 						)
 	</insert>

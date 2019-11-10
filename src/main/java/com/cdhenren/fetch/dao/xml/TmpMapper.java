@@ -305,5 +305,24 @@ public interface TmpMapper {
      * 历史警告Hbase
      * @param tmpHistoryWarnHbase
      */
-    void insertTmpHistoryWarnHbase(TmpHistoryWarnHbase tmpHistoryWarnHbase);
+    int insertTmpHistoryWarnHbase(TmpHistoryWarnHbase tmpHistoryWarnHbase);
+
+    /**
+     * 获取异常
+     * @param tmpPullException
+     */
+    int insertTmpPullException(TmpPullException tmpPullException);
+
+    /**
+     * @param tmpWrongEquipment
+     * @return
+     */
+    int insertTmpWrongEquipment(TmpWrongEquipment tmpWrongEquipment);
+
+    /**
+     * insertTmpPerformance
+     * @param tmpPerformance
+     * @return
+     */
+    int insertTmpPerformance(TmpPerformance tmpPerformance);
 }

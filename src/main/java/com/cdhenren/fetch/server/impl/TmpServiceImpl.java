@@ -586,4 +586,43 @@ public class TmpServiceImpl implements TmpService {
         return tmpHistoryWarnHbases.size();
     }
 
+    @Override
+    public int insertTmpPullExceptions(List<TmpPullException> tmpPullExceptions) {
+        SqlSession sqlSession = MyBatisUtil.getSession(executeModelBatch);
+        try {
+            tmpMapper = sqlSession.getMapper(TmpMapper.class);
+            tmpPullExceptions.forEach(tmpPullException -> tmpMapper.insertTmpPullException(tmpPullException));
+            sqlSession.commit();
+        } finally {
+            MyBatisUtil.closeSession(sqlSession);
+        }
+        return tmpPullExceptions.size();
+    }
+
+    @Override
+    public int insertTmpWrongEquipments(List<TmpWrongEquipment> tmpWrongEquipments) {
+        SqlSession sqlSession = MyBatisUtil.getSession(executeModelBatch);
+        try {
+            tmpMapper = sqlSession.getMapper(TmpMapper.class);
+            tmpWrongEquipments.forEach(tmpWrongEquipment -> tmpMapper.insertTmpWrongEquipment(tmpWrongEquipment));
+            sqlSession.commit();
+        } finally {
+            MyBatisUtil.closeSession(sqlSession);
+        }
+        return tmpWrongEquipments.size();
+    }
+
+    @Override
+    public int insertTmpPerformances(List<TmpPerformance> tmpPerformances) {
+        SqlSession sqlSession = MyBatisUtil.getSession(executeModelBatch);
+        try {
+            tmpMapper = sqlSession.getMapper(TmpMapper.class);
+            tmpPerformances.forEach(tmpPerformance -> tmpMapper.insertTmpPerformance(tmpPerformance));
+            sqlSession.commit();
+        } finally {
+            MyBatisUtil.closeSession(sqlSession);
+        }
+        return tmpPerformances.size();
+    }
+
 }
