@@ -5,7 +5,6 @@ import com.cdhenren.fetch.driver.enhancer.AbstractDriverEnhancerTemplate;
 import com.cdhenren.fetch.entity.ResultSet;
 import com.cdhenren.fetch.entity.TaskWrap;
 import com.cdhenren.fetch.entity.TmpPerformance;
-import com.cdhenren.fetch.entity.TmpPullException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -60,11 +59,16 @@ public class PerformanceDriver extends AbstractDriverEnhancerTemplate {
             TimeUnit.SECONDS.sleep(1);
             driver.findElement(By.cssSelector("#j_id263 > center > input:nth-child(3)")).click();
             TimeUnit.SECONDS.sleep(5);
+            driver.findElement(By.cssSelector("#exportExcelPanelContentDiv > div")).click();
+            TimeUnit.SECONDS.sleep(1);
             menus = driver.findElements(By.cssSelector("#burTree > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr"));
         }
+        driver.findElement(By.cssSelector("#burTree > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.standartTreeRow")).click();
         //日数据-性能数据-交流输入停电告警
         driver.findElement(By.cssSelector("#queryForm\\3a j_id16")).click();
         TimeUnit.SECONDS.sleep(1);
+        driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("交流输入停电告警");
+        driver.findElement(By.cssSelector("#queryForm3\\3a mname")).clear();
         driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("交流输入停电告警");
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#queryForm3\\3a queryMid")).click();
@@ -82,10 +86,14 @@ public class PerformanceDriver extends AbstractDriverEnhancerTemplate {
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#j_id263 > center > input:nth-child(3)")).click();
         TimeUnit.SECONDS.sleep(5);
+        driver.findElement(By.cssSelector("#exportExcelPanelContentDiv > div")).click();
+        TimeUnit.SECONDS.sleep(1);
         //
         //门锁开关状态
+        driver.findElement(By.cssSelector("#burTree > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.standartTreeRow")).click();
         driver.findElement(By.cssSelector("#queryForm\\3a j_id16")).click();
         TimeUnit.SECONDS.sleep(1);
+        driver.findElement(By.cssSelector("#queryForm3\\3a mname")).clear();
         driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("门锁开关状态");
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#queryForm3\\3a queryMid")).click();
@@ -103,8 +111,11 @@ public class PerformanceDriver extends AbstractDriverEnhancerTemplate {
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#j_id263 > center > input:nth-child(3)")).click();
         TimeUnit.SECONDS.sleep(5);
+        driver.findElement(By.cssSelector("#exportExcelPanelContentDiv > div")).click();
+        TimeUnit.SECONDS.sleep(1);
 
         //油机发电状态
+        driver.findElement(By.cssSelector("#burTree > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.standartTreeRow")).click();
         driver.findElement(By.cssSelector("#queryForm\\3a j_id16")).click();
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("油机发电状态");
@@ -124,6 +135,8 @@ public class PerformanceDriver extends AbstractDriverEnhancerTemplate {
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#j_id263 > center > input:nth-child(3)")).click();
         TimeUnit.SECONDS.sleep(5);
+        driver.findElement(By.cssSelector("#exportExcelPanelContentDiv > div")).click();
+        TimeUnit.SECONDS.sleep(1);
 
         dealDownLoadFile(resultSets, 1, TmpPerformance.class, "性能-导出");
     }
