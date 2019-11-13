@@ -480,8 +480,8 @@ public abstract class AbstractDriverTemplate implements Runnable {
      * @throws Exception
      */
     protected void completed(List<ResultSet> tmpList) throws Exception {
-        sysTaskService.updateTask(taskWrap, tmpList);
         updateHisTask();
+        sysTaskService.updateTask(taskWrap, tmpList);
     }
 
     protected final void reflectEntity(ResultSet result, List<String> values) {

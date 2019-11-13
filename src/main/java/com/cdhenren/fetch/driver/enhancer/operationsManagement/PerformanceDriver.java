@@ -68,8 +68,6 @@ public class PerformanceDriver extends AbstractDriverEnhancerTemplate {
         driver.findElement(By.cssSelector("#queryForm\\3a j_id16")).click();
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("交流输入停电告警");
-        driver.findElement(By.cssSelector("#queryForm3\\3a mname")).clear();
-        driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("交流输入停电告警");
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#queryForm3\\3a queryMid")).click();
         TimeUnit.SECONDS.sleep(3);
@@ -118,6 +116,7 @@ public class PerformanceDriver extends AbstractDriverEnhancerTemplate {
         driver.findElement(By.cssSelector("#burTree > div > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(1) > td.standartTreeRow")).click();
         driver.findElement(By.cssSelector("#queryForm\\3a j_id16")).click();
         TimeUnit.SECONDS.sleep(1);
+        driver.findElement(By.cssSelector("#queryForm3\\3a mname")).clear();
         driver.findElement(By.cssSelector("#queryForm3\\3a mname")).sendKeys("油机发电状态");
         TimeUnit.SECONDS.sleep(1);
         driver.findElement(By.cssSelector("#queryForm3\\3a queryMid")).click();

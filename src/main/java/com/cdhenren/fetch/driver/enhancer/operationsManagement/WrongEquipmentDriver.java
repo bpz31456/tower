@@ -49,8 +49,7 @@ public class WrongEquipmentDriver extends AbstractDriverEnhancerTemplate {
         driver.get(src);
         TimeUnit.SECONDS.sleep(2);
 
-        driver.findElement(By.cssSelector("#queryForm\\3a btn1")).click();
-        TimeUnit.SECONDS.sleep(2);
+        //#queryForm\3a j_id26
         driver.findElement(By.cssSelector("#queryForm\\3a j_id26")).click();
         TimeUnit.SECONDS.sleep(2);
         //TODO 当页
